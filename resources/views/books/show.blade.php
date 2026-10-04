@@ -1,7 +1,9 @@
 @extends('layouts.app')
-@section('title', 'Detail Buku')
+@section('title', $book['title'])
 @section('content')
-<h1>Detail Buku</h1>
-<p>ID yang diminta: {{ $id }}</p>
-<a href="{{ route('books.index') }}">Kembali</a>
+<h1>{{ $book['title'] }}</h1>
+<p><strong>Penulis:</strong> {{ $book['author'] }}</p>
+<p><strong>Tahun:</strong> {{ $book['year'] }}</p>
+<p><strong>ID:</strong> {{ $book['id'] }}</p>
+<a href="{{ route('books.index') }}">Kembali ke Katalog</a>
 @endsection
