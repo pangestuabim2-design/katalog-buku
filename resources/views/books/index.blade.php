@@ -1,14 +1,20 @@
 @extends('layouts.app')
 
-@section('title', 'Daftar Buku')
+@section('title', 'Data Buku')
 
 @section('content')
-<h1>Daftar Buku</h1>
+<h1>Data Buku</h1>
+
 <ul>
-    @foreach ($books as $book)
+    @forelse ($books as $book)
         <li>
-            <a href="/books/{{ $book['id'] }}">{{ $book['title'] }}</a> - {{ $book['author'] }}
+            <a href="{{ route('books.show', $book['id']) }}">
+                {{ $book['title'] }}
+            </a>
+            - {{ $book['author'] }}
         </li>
-    @endforeach
+    @empty
+        <li>Tidak ada buku.</li>
+    @endforelse
 </ul>
 @endsection
