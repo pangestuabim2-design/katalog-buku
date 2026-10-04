@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head><title>Detail Buku</title></head>
-<body>
-    <h1>{{ $book['title'] }}</h1>
-    <p>Penulis: {{ $book['author'] }}</p>
-    <a href="{{ route('books.index') }}">Kembali</a>
-</body>
-</html>
+@extends('layouts.app')
+
+@section('title', $book['title'])
+
+@section('content')
+<h1>Detail Buku</h1>
+<h2>{{ $book['title'] }}</h2>
+<p>Penulis: {{ $book['author'] }}</p>
+<p>ID: {{ $book['id'] }}</p>
+<a href="{{ route('books.index') }}">Kembali ke Daftar</a>
+@endsection
