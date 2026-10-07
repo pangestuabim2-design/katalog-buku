@@ -1,16 +1,10 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('books.index');
 });
 
-Route::view('/profil-kelas', 'profil-kelas')->name('profil-kelas');
-Route::view('/bantuan', 'bantuan')->name('bantuan');
-
-Route::get('/books', [BookController::class, 'index'])->name('books.index');
-Route::get('/books/{id}', [BookController::class, 'show'])->whereNumber('id')->name('books.show');
-Route::get('/books/{id}/preview', [BookController::class, 'preview'])->whereNumber('id')->name('books.preview');
-
+Route::resource('books', BookController::class);
+Route::get('books/{book}/preview', [BookController::class, 'preview'])->name('books.preview');

@@ -1,0 +1,40 @@
+<?php
+namespace App\Http\Requests;
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreBookRequest extends FormRequest
+{
+    public function authorize(): bool { return true; }
+
+    public function rules(): array
+    {
+        return [
+            'title' => ['required','string','max:255'],
+            'isbn' => ['nullable','string','max:20','unique:books,isbn'],
+            'author' => ['required','string','max:150'],
+            'publisher' => ['nullable','string','max:150'],
+            'published_year' => ['nullable','integer','min:1900','max:'.date('Y')],
+            'price' => ['required','numeric','min:0'],
+            'stock' => ['required','integer','min:0'],
+            'description' => ['nullable','string'],
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'required' => ':attribute wajib diisi.',
+            'isbn.unique' => 'ISBN sudah digunakan.',
+            'published_year.min' => 'Tahun minimal 1900.',
+            'published_year.max' => 'Tahun tidak boleh melebihi tahun ini.',
+            'price.min' => 'Harga tidak boleh negatif.',
+            'stock.min' => 'Stok tidak boleh negatif.',
+        ];
+    }
+    public function attributes(): array
+    {
+        return [
+            'title'=>'judul','isbn'=>'ISBN','author'=>'penulis','publisher'=>'penerbit',
+            'published_year'=>'tahun terbit','price'=>'harga','stock'=>'stok','description'=>'deskripsi',
+        ];
+    }
+}

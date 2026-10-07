@@ -1,11 +1,16 @@
 @extends('layouts.app')
-@section('title', $book->title)
 @section('content')
-<h1>{{ $book->title }}</h1>
-<p>ISBN: {{ $book->isbn }}</p>
-<p>Penulis: {{ $book->author }}</p>
-<p>Penerbit: {{ $book->publisher }} ({{ $book->year }})</p>
-<p>Harga: Rp {{ number_format($book->price, 0, ',', '.') }}</p>
-<p>Stok: {{ $book->stock }}</p>
-<a href="{{ route('books.index') }}">Kembali</a>
+<h1>Detail Buku</h1>
+<p><b>Judul:</b> {{ $book->title }}</p>
+<p><b>Penulis:</b> {{ $book->author }}</p>
+<p><b>ISBN:</b> {{ $book->isbn ?? '-' }}</p>
+<p><b>Penerbit:</b> {{ $book->publisher ?? '-' }}</p>
+<p><b>Tahun:</b> {{ $book->published_year ?? '-' }}</p>
+<p><b>Lokasi:</b> {{ $book->location }}</p>
+<p><b>Stok:</b> {{ $book->stock }}</p>
+<p><b>Harga:</b> Rp {{ number_format($book->price, 0, ',', '.') }}</p>
+<p><b>Deskripsi:</b> {{ $book->description }}</p>
+<br>
+<a href="{{ route('books.index') }}">Kembali</a> | 
+<a href="{{ route('books.edit', $book) }}">Edit</a>
 @endsection

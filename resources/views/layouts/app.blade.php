@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Katalog Buku')</title>
-</head>
-<body>
-    <nav>
-        <a href="{{ route('books.index') }}">Data Buku</a>
-    </nav>
-    <hr>
-    <main>
-        @yield('content')
-    </main>
+<head><title>Perpus</title></head>
+<body style="font-family:Arial;padding:20px">
+    @if(session('success'))
+        <div style="background:#d4edda;padding:10px;margin-bottom:10px">{{ session('success') }}</div>
+    @endif
+    @yield('content')
 </body>
 </html>
